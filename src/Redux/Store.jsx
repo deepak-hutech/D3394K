@@ -1,11 +1,12 @@
-import {createStore,applyMiddleware} from "redux"
- import bigReducer from "./index"
- import sagaMiddeleWareCreator from "redux-saga"
- import saga from "./saga/index.js"
- import {composeWithDevTools} from "redux-devtools-extension"
- const sagaMiddeleWare = sagaMiddeleWareCreator()
- // Create store warehouse
- const store = createStore(bigReducer,composeWithDevTools(applyMiddleware(sagaMiddeleWare)))
- sagaMiddeleWare.run(saga)
- ​
- export default store
+import { configureStore, applyMiddleware } from "@reduxjs/toolkit";
+import counterReducer from "../Redux/counter/Reducer";
+import createSagaMiddleware from "redux-saga";
+import mySaga from "./counter/Saga";
+
+const sagaMiddleware = createSagaMiddleware();
+
+export default configureStore({
+  reducer: { counter: counterReducer },
+  middleware: [sagaMiddleware],
+});
+sagaMiddleware.run(mySaga);

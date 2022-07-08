@@ -11,6 +11,9 @@ const Home = () => {
       </div>
 
       {/* carousel */}
+      <h2 className="text-4xl font font-extrabold tracking-tight text-gray-900 sm:text-6xl ml-16">
+        Testimonials
+      </h2>
       <div className="carousel h-52 mt-9 w-full testimonial">
         <div id="slide1" className="carousel-item relative w-full">
           <div className="max-w-full p-4 text-gray-800 bg-white rounded-lg shadow-md  shadow-cyan-700/50">
@@ -122,7 +125,6 @@ const Home = () => {
         </div>
       </div>
       <Subscribe />
-     
     </div>
   );
 };

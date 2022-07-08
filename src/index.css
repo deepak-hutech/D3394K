@@ -8,9 +8,12 @@ body {
 .footer {
   display: fixed;
 }
-.subscriber{
-    border-top: 3px solid grey;
+.subscriber {
+  border-top: 3px solid grey;
 }
-.testimonial{
-    border-top: 3px solid grey;
+.testimonial {
+  border-top: 3px solid grey;
+}
+.error-message {
+  color: red;
 }
