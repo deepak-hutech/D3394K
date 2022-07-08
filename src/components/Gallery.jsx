@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector, useDispatch } from "react-redux";
+import styled from "styled-components";
 
 const Gallery = () => {
   const [spinner, setSpinner] = useState(false);
@@ -25,6 +26,10 @@ const Gallery = () => {
 
   const pageData = allPhotos.slice(page * pageSize - pageSize, page * pageSize);
   console.log(pageData);
+
+  const zoomImage = () => {
+    const Wrapper = styled.div``;
+  };
   return (
     <div>
       {spinner === true ? (
@@ -63,8 +68,9 @@ const Gallery = () => {
                 <div className="w-1/4 p-1 md:p-2">
                   <img
                     alt="gallery"
-                    className="block object-cover object-center w-full h-full rounded-lg"
+                    className="block object-cover object-center w-full h-full rounded-lg  hover:scale-75 ease-in duration-500"
                     src={movie.thumbnailUrl}
+                    onClick={zoomImage}
                   />
                 </div>
               ))}

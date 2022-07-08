@@ -33,7 +33,18 @@ function* fetchPhotos(action) {
     yield put({ type: "PHOTOS_FETCH_FAILED", error: e.message });
   }
 }
-
+// comments
+function* fetchComments(action) {
+  try {
+    const fetchComment = yield call(
+      fetchPost,
+      "https://jsonplaceholder.typicode.com/comments"
+    );
+    yield put({ type: "COMMENT_FETCH_SUCCEEDED", result: fetchComment });
+  } catch (error) {
+    yield put({ type: "COMMENT_FETCH_FAILED", error: e.message });
+  }
+}
 // post data
 function* addBlogs(action) {
   try {
@@ -54,5 +65,6 @@ function* mySaga() {
   yield takeEvery("USER_FETCH_REQUESTED", fetchUser);
   yield takeEvery("PHOTOS_FETCH_REQUESTED", fetchPhotos);
   yield takeEvery("ADDBLOGS_FETCH_REQUESTED", addBlogs);
+  yield takeEvery("COMMENT_FETCH_REQUESTED", fetchComments);
 }
 export default mySaga;

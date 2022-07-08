@@ -61,7 +61,7 @@ const ContactUs = () => {
         m-0
         focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
               id="exampleInput7"
-              placeholder="Name"
+              placeholder="Name (min-3 max-15)"
             />
           </div>
 

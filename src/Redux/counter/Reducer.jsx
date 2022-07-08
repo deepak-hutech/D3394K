@@ -26,6 +26,7 @@ export const counterSlice = createSlice({
     },
   },
 });
+// post
 const listPost = (state = initialStatePost, action) => {
   switch (action.type) {
     case "USER_FETCH_REQUESTED":
@@ -54,6 +55,7 @@ const listPost = (state = initialStatePost, action) => {
       return state;
   }
 };
+// photos
 const listPhotos = (state = initialStatePost, action) => {
   switch (action.type) {
     case "PHOTOS_FETCH_REQUESTED":
@@ -82,7 +84,7 @@ const listPhotos = (state = initialStatePost, action) => {
       return state;
   }
 };
-
+// blogs
 const postBlog = (state = initialStatePost, action) => {
   switch (action.type) {
     case "ADDBLOGS_FETCH_REQUESTED":
@@ -111,6 +113,36 @@ const postBlog = (state = initialStatePost, action) => {
       return state;
   }
 };
+
+const listComments = (state = initialStatePost, action) => {
+  switch (action.type) {
+    case "COMMENT_FETCH_REQUESTED":
+      return {
+        ...state,
+        fetching: true,
+        result: null,
+        error: null,
+      };
+    case "COMMENT_FETCH_SUCCEEDED":
+      return {
+        ...state,
+        fetching: false,
+        result: action.result.data,
+        error: null,
+      };
+
+    case "COMMENT_FETCH_FAILED":
+      return {
+        ...state,
+        fetching: false,
+        result: null,
+        error: action.er,
+      };
+    default:
+      return state;
+  }
+};
+// comments
 // Action creators are generated for each case reducer function
 export const { increment, decrement, incrementByAmount } = counterSlice.actions;
 
@@ -119,4 +151,5 @@ export default combineReducers({
   listPost,
   listPhotos,
   postBlog,
+  listComments,
 });
