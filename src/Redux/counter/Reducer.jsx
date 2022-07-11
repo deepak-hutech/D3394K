@@ -29,14 +29,14 @@ export const counterSlice = createSlice({
 // post
 const listPost = (state = initialStatePost, action) => {
   switch (action.type) {
-    case "USER_FETCH_REQUESTED":
+    case "POST_FETCH_REQUESTED":
       return {
         ...state,
         fetching: true,
         result: null,
         error: null,
       };
-    case "USER_FETCH_SUCCEEDED":
+    case "POST_FETCH_SUCCEEDED":
       return {
         ...state,
         fetching: false,
@@ -44,7 +44,7 @@ const listPost = (state = initialStatePost, action) => {
         error: null,
       };
 
-    case "USER_FETCH_FAILED":
+    case "POST_FETCH_FAILED":
       return {
         ...state,
         fetching: false,
@@ -113,8 +113,9 @@ const postBlog = (state = initialStatePost, action) => {
       return state;
   }
 };
-
+// comment
 const listComments = (state = initialStatePost, action) => {
+  console.log(action.type);
   switch (action.type) {
     case "COMMENT_FETCH_REQUESTED":
       return {

@@ -17,3 +17,6 @@ body {
 .error-message {
   color: red;
 }
+.gallery {
+  border: 3px soild red;
+}

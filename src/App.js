@@ -9,7 +9,9 @@ import Gallery from "./components/Gallery";
 import Static from "./components/Static";
 import Blogs from "./components/Blogs";
 import AddBlogs from "./components/AddBlogs";
-import LatestBlogs from "./components/LatestBlogs";
+import LatestBlogs from "./components/LatestComment";
+import AddComments from "./components/AddComments";
+import AllComments from "./components/AllComments";
 export default function App() {
   return (
     <>
@@ -23,6 +25,8 @@ export default function App() {
           <Route path="blogs" element={<Blogs />} />
           <Route path="/blogs/blogs/addblogs" element={<AddBlogs />} />
           <Route path="/blogs/latestblogs" element={<LatestBlogs />} />
+          <Route path="/blogs/allcomments" element={<AllComments />} />
+          <Route path="/blogs/addcomments" element={<AddComments />} />
         </Routes>
       </Router>
       <Footer />

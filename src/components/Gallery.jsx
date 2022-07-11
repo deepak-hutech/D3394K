@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -27,11 +27,9 @@ const Gallery = () => {
   const pageData = allPhotos.slice(page * pageSize - pageSize, page * pageSize);
   console.log(pageData);
 
-  const zoomImage = () => {
-    const Wrapper = styled.div``;
-  };
+  const zoomImage = () => {};
   return (
-    <div>
+    <div className="gallery">
       {spinner === true ? (
         <div className="spinner ml-96 ">
           <button
@@ -68,7 +66,7 @@ const Gallery = () => {
                 <div className="w-1/4 p-1 md:p-2">
                   <img
                     alt="gallery"
-                    className="block object-cover object-center w-full h-full rounded-lg  hover:scale-75 ease-in duration-500"
+                    className="block object-cover object-center w-full h-full rounded-lg "
                     src={movie.thumbnailUrl}
                     onClick={zoomImage}
                   />

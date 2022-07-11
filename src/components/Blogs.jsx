@@ -3,16 +3,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
 
 const Blogs = () => {
-  const [data, setData] = useState(null);
+  const [commentdata, setCommentData] = useState({});
   const [spinner, setSpinner] = useState(false);
   const dispatch = useDispatch();
   useEffect(() => {
     setSpinner(true);
-    dispatch({ type: "USER_FETCH_REQUESTED" });
+    dispatch({ type: "POST_FETCH_REQUESTED" });
+    setSpinner(false);
+  }, []);
+  useEffect(() => {
+    setSpinner(true);
+    dispatch({ type: "COMMENT_FETCH_REQUESTED" });
     setSpinner(false);
   }, []);
   const postState = useSelector((state) => state?.counter?.listPost?.result);
   console.log(postState);
+  const commentState = useSelector(
+    (state) => state?.counter?.listComments?.result
+  );
+  console.log(commentState);
 
   return (
     <>
@@ -38,7 +47,20 @@ const Blogs = () => {
             type="button"
             className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
           >
-            Latest Post
+            Latest Comments
+          </button>
+        </div>
+      </Link>
+      <Link
+        to="/blogs/allcomments"
+        className="flex items-center float-right mr-2"
+      >
+        <div className="flex space-x-2 justify-center">
+          <button
+            type="button"
+            className="inline-block px-6 py-2.5 bg-blue-600 text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out"
+          >
+            All Comments
           </button>
         </div>
       </Link>

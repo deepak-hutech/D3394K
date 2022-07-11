@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { userSchema } from "./UserValidation";
 import * as yup from "yup";
 import styled from "styled-components";
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
+import { useSelector, useDispatch } from "react-redux";
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -12,6 +13,7 @@ function classNames(...classes) {
 
 const ContactUs = () => {
   const [errorMessage, setErrorMessage] = useState("none");
+  const [data, setData] = useState();
   const createUser = async (e) => {
     e.preventDefault();
     let formData = {
@@ -21,7 +23,7 @@ const ContactUs = () => {
       email: e.target[3].value,
       message: e.target[4].value,
     };
-
+    setData(formData);
     const isValid = await userSchema.isValid(formData);
     console.log(isValid);
     if (isValid === false) {
@@ -29,8 +31,15 @@ const ContactUs = () => {
     } else {
       setErrorMessage("none");
     }
-    console.log(formData);
+    // console.log(formData);
   };
+  console.log(data);
+
+  // dispatch data
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch({ type: "ADDCONTACTUS_POST_REQUESTED", payload: data });
+  });
 
   const Wrapper = styled.div`
     .error-message {
