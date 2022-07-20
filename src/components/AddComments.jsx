@@ -1,25 +1,46 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { commentSchema } from "../components/CommentValidation";
+import styled from "styled-components";
 
 const AddComments = () => {
   const [data, setData] = useState();
+  const [errorMessage, setErrorMessage] = useState("hidden");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const formData = {
       description: e.target[0].value,
     };
     setData(formData);
+    const isValid = await commentSchema.isValid(formData);
+
+    setErrorMessage(isValid);
+
+    if (isValid) {
+      setErrorMessage("hidden");
+    } else {
+      setErrorMessage("visible");
+    }
   };
-  console.log(data);
+  console.log(errorMessage);
 
   // dispatch data
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch({ type: "ADDCOMMENTS_POST_REQUESTED", payload: data });
   });
+
+  // styled components
+  const Wrapper = styled.div`
+    .error-message {
+      color: red;
+      visibility: ${errorMessage};
+    }
+  `;
+
   return (
-    <div>
+    <Wrapper>
       <div className="block p-6 rounded-lg shadow-lg bg-white max-w-full mb-52">
         <h1 className="xl:px-10 md:px-2 px-7 text-2xl font-semibold leading-normal text-center text-black mb-3">
           Add you comments here
@@ -71,11 +92,14 @@ const AddComments = () => {
       duration-150
       ease-in-out"
           >
-            Add Post
+            Add Comment
           </button>
         </form>
+        <p className="error-message mt-10">
+          Please use more than 10 characters
+        </p>
       </div>
-    </div>
+    </Wrapper>
   );
 };
 

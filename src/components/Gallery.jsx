@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
+import "../App.css";
 
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
 const Gallery = () => {
   const [spinner, setSpinner] = useState(false);
-
+  const [isActive, setIsActive] = useState("");
+  let [indexId, setIndexId] = useState("");
   const dispatch = useDispatch();
   useEffect(() => {
     setSpinner(true);
@@ -27,9 +29,12 @@ const Gallery = () => {
   const pageData = allPhotos.slice(page * pageSize - pageSize, page * pageSize);
   console.log(pageData);
 
-  const zoomImage = () => {};
+  const zoomImage = (e) => {
+    setIsActive("active");
+  };
+
   return (
-    <div className="gallery">
+    <Wrapper className="gallery">
       {spinner === true ? (
         <div className="spinner ml-96 ">
           <button
@@ -62,13 +67,16 @@ const Gallery = () => {
         <div className="container px-5 py-2 mx-auto lg:pt-24 lg:px-32">
           <div className="flex flex-wrap -m-1 md:-m-2">
             <div className="flex flex-wrap w-1/1">
-              {pageData.map((movie) => (
-                <div className="w-1/4 p-1 md:p-2">
+              {pageData.map((movie, index) => (
+                <div
+                  className={`w-1/4 p-1 md:p-2  images${index + 1} `}
+                  onClick={zoomImage}
+                >
                   <img
                     alt="gallery"
-                    className="block object-cover object-center w-full h-full rounded-lg "
+                    className={`block object-cover object-center w-full h-full rounded-lg  ${isActive} `}
                     src={movie.thumbnailUrl}
-                    onClick={zoomImage}
+                    key={index}
                   />
                 </div>
               ))}
@@ -76,8 +84,10 @@ const Gallery = () => {
           </div>
         </div>
       </section>
-    </div>
+    </Wrapper>
   );
 };
 
 export default Gallery;
+
+const Wrapper = styled.div``;

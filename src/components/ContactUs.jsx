@@ -12,7 +12,7 @@ function classNames(...classes) {
 }
 
 const ContactUs = () => {
-  const [errorMessage, setErrorMessage] = useState("none");
+  const [errorMessage, setErrorMessage] = useState("hidden");
   const [data, setData] = useState();
   const createUser = async (e) => {
     e.preventDefault();
@@ -26,10 +26,10 @@ const ContactUs = () => {
     setData(formData);
     const isValid = await userSchema.isValid(formData);
     console.log(isValid);
-    if (isValid === false) {
-      setErrorMessage("block");
+    if (isValid) {
+      setErrorMessage("hidden");
     } else {
-      setErrorMessage("none");
+      setErrorMessage("visible");
     }
     // console.log(formData);
   };
@@ -43,7 +43,7 @@ const ContactUs = () => {
 
   const Wrapper = styled.div`
     .error-message {
-      display: ${errorMessage};
+      visibility: ${errorMessage};
     }
     height: 81vh;
   `;
