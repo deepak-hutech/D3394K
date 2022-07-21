@@ -49,7 +49,7 @@ const listPost = (state = initialStatePost, action) => {
         ...state,
         fetching: false,
         result: null,
-        error: action.er,
+        error: action.error,
       };
     default:
       return state;
@@ -78,7 +78,7 @@ const listPhotos = (state = initialStatePost, action) => {
         ...state,
         fetching: false,
         result: null,
-        error: action.er,
+        error: state.error,
       };
     default:
       return state;
@@ -107,7 +107,7 @@ const postBlog = (state = initialStatePost, action) => {
         ...state,
         fetching: false,
         result: null,
-        error: action.er,
+        error: state.error,
       };
     default:
       return state;
